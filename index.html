@@ -32,6 +32,7 @@
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
+    max-width: 100vw;
   }
 
   /* ─── NAV ─── */
@@ -364,6 +365,12 @@
   .proof-num { font-size: 1.4rem; font-weight: 800; color: #fff; }
   .proof-label { font-size: 0.72rem; color: var(--text3); }
 
+  /* Fix horizontal overflow */
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
   /* ─── RESPONSIVE ─── */
   @media (max-width: 600px) {
     .hero { padding: 2.5rem 1rem 2rem; }
@@ -433,7 +440,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">Dillon</div>
-  <a href="https://dilloncortez.gumroad.com/l/full-stack-bundle" class="nav-cta">Get the Bundle →</a>
+  <a href="https://dilloncortez.gumroad.com/l/ai-agent-starter-kit" class="nav-cta">Get Started →</a>
 </nav>
 
 <!-- HERO -->
@@ -545,15 +552,14 @@
 <!-- BUNDLE BANNER (after products — upgrade moment) -->
 <div class="bundle-banner">
   <div class="bundle-left">
-    <div class="bundle-tag">🔥 Best Value — Most People Grab This</div>
-    <h3>The Full Stack Bundle</h3>
-    <p>All 4 products. Build agents + automate income + seed crypto. Everything, once.</p>
+    <div class="bundle-tag">🔥 Most Popular</div>
+    <h3>Start with the Agent Kit</h3>
+    <p>The 48-hour blueprint. Zero to working agent. Most people start here.</p>
   </div>
   <div class="bundle-right">
-    <div class="bundle-price-old">$96 if bought separately</div>
-    <div class="bundle-price">$69 <span>/ one-time</span></div>
-    <a href="https://gumroad.com/dillon/products/full-stack-bundle" class="bundle-btn">Grab the Bundle →</a>
-    <div style="font-size:0.72rem;color:var(--text3);margin-top:0.5rem;">Early pricing · goes up after 50 sales</div>
+    <div class="bundle-price">$29 <span>/ one-time</span></div>
+    <a href="https://dilloncortez.gumroad.com/l/ai-agent-starter-kit" class="bundle-btn">Get Started →</a>
+    <div style="font-size:0.72rem;color:var(--text3);margin-top:0.5rem;">Bundle coming soon</div>
   </div>
 </div>
 
@@ -601,7 +607,7 @@
   <h2>Proof it works</h2>
   <p>Not promises. Actual output from running these systems.</p>
 </div>
-<div style="max-width:780px;margin:0 auto 1rem;padding:0 1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;">
+<div style="max-width:780px;margin:0 auto 1rem;padding:0 1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
   <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.3rem;">
     <div style="font-size:1.5rem;font-weight:800;color:var(--green);margin-bottom:0.2rem;">40 leads</div>
     <p style="font-size:0.82rem;color:var(--text2);">Collected by the Reddit lead scraper in its first night running. $90–$130/hr gigs, filtered automatically.</p>
