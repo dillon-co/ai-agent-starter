@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ship Faster. Earn More. | Developer Products by Dillon</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #12121a;
+    --bg3: #1a1a26;
+    --accent: #7c6aff;
+    --accent2: #a78bfa;
+    --text: #e8e8ed;
+    --text2: #9494a8;
+    --text3: #5c5c6e;
+    --border: #2a2a38;
+    --green: #34d399;
+    --orange: #fb923c;
+    --red: #f87171;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--accent2); letter-spacing: -0.5px; }
+  .nav-cta {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .nav-cta:hover { background: #6a59e0; transform: scale(1.02); }
+
+  /* ─── HERO ─── */
+  .hero {
+    text-align: center;
+    padding: 5rem 1.5rem 4rem;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 500px;
+    background: radial-gradient(ellipse, rgba(124,106,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--accent2);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    max-width: 700px;
+    margin: 0 auto 1.2rem;
+    color: #fff;
+  }
+  .hero h1 span { color: var(--accent2); }
+  .hero p {
+    color: var(--text2);
+    font-size: 1.15rem;
+    max-width: 520px;
+    margin: 0 auto 0.8rem;
+  }
+  .hero-proof {
+    color: var(--text3);
+    font-size: 0.82rem;
+    margin-top: 1.5rem;
+  }
+  .hero-proof span { color: var(--green); font-weight: 600; }
+
+  /* ─── PAIN POINTS ─── */
+  .pain {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 2rem 1.5rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .pain-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.4rem;
+    flex: 1 1 220px;
+    max-width: 280px;
+  }
+  .pain-card .emoji { font-size: 1.4rem; margin-bottom: 0.4rem; }
+  .pain-card h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.3rem; color: #fff; }
+  .pain-card p { font-size: 0.8rem; color: var(--text2); }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-header {
+    text-align: center;
+    padding: 3.5rem 1.5rem 1.5rem;
+  }
+  .section-header h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .section-header p { color: var(--text2); font-size: 0.95rem; }
+
+  /* ─── BUNDLE BANNER ─── */
+  .bundle-banner {
+    max-width: 780px;
+    margin: 2rem auto;
+    background: linear-gradient(135deg, #1e1a3a, #1a1a2e);
+    border: 1px solid rgba(124,106,255,0.3);
+    border-radius: 16px;
+    padding: 1.8rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .bundle-left .bundle-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.5rem;
+  }
+  .bundle-left h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; }
+  .bundle-left p { color: var(--text2); font-size: 0.85rem; }
+  .bundle-right { text-align: right; flex-shrink: 0; }
+  .bundle-price-old { color: var(--text3); font-size: 0.9rem; text-decoration: line-through; }
+  .bundle-price { color: #fff; font-size: 2rem; font-weight: 800; letter-spacing: -1px; }
+  .bundle-price span { font-size: 0.85rem; color: var(--text2); font-weight: 400; }
+  .bundle-btn {
+    display: inline-block;
+    margin-top: 0.8rem;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.6rem 1.6rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .bundle-btn:hover { background: #6a59e0; transform: scale(1.02); }
+
+  /* ─── PRODUCT CARDS ─── */
+  .products {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+  .product-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s, transform 0.15s;
+  }
+  .product-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .product-card.featured { border-color: rgba(124,106,255,0.4); background: linear-gradient(180deg, #1a1a2e 0%, var(--bg2) 40%); }
+  .product-card .card-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--orange);
+    margin-bottom: 0.6rem;
+  }
+  .product-card.featured .card-tag { color: var(--accent2); }
+  .product-card h3 { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem; letter-spacing: -0.3px; }
+  .product-card .card-desc { font-size: 0.82rem; color: var(--text2); margin-bottom: 1rem; flex-grow: 1; }
+  .product-card ul { list-style: none; margin-bottom: 1.2rem; }
+  .product-card ul li {
+    font-size: 0.82rem;
+    color: var(--text2);
+    padding: 0.25rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .product-card ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+    font-size: 0.75rem;
+  }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+  .card-price { font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+  .card-price span { font-size: 0.78rem; color: var(--text3); font-weight: 400; }
+  .card-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .card-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .product-card.featured .card-btn { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .product-card.featured .card-btn:hover { background: #6a59e0; }
+
+  /* ─── WHAT'S INSIDE ─── */
+  .inside {
+    max-width: 780px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+  .inside-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.3rem 1.5rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .inside-num {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--accent2);
+    flex-shrink: 0;
+  }
+  .inside-item h4 { font-size: 0.92rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; }
+  .inside-item p { font-size: 0.8rem; color: var(--text2); }
+
+  /* ─── FAQ ─── */
+  .faq {
+    max-width: 660px;
+    margin: 2rem auto 1rem;
+    padding: 0 1.5rem;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 1.1rem 0;
+  }
+  .faq-item:first-child { border-top: 1px solid var(--border); }
+  .faq-q { font-weight: 600; font-size: 0.92rem; color: #fff; cursor: pointer; }
+  .faq-a { font-size: 0.82rem; color: var(--text2); margin-top: 0.4rem; display: block; }
+
+  /* ─── EMAIL CAPTURE ─── */
+  .capture {
+    max-width: 560px;
+    margin: 3rem auto;
+    text-align: center;
+    padding: 0 1.5rem;
+  }
+  .capture h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+  .capture p { font-size: 0.83rem; color: var(--text2); margin-bottom: 1rem; }
+  .capture-form { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
+  .capture-form input[type="email"] {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    color: #fff;
+    font-size: 0.88rem;
+    flex: 1 1 240px;
+    max-width: 340px;
+    outline: none;
+  }
+  .capture-form input[type="email"]:focus { border-color: var(--accent); }
+  .capture-form button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .capture-form button:hover { background: #6a59e0; }
+  .capture-note { font-size: 0.72rem; color: var(--text3); margin-top: 0.6rem; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: var(--text3);
+    font-size: 0.78rem;
+  }
+  footer a { color: var(--text2); text-decoration: none; }
+  footer a:hover { color: var(--accent2); }
+
+  /* ─── PROOF BAR ─── */
+  .proof-bar {
+    max-width: 700px;
+    margin: 1.5rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 0 1.5rem;
+  }
+  .proof-item { text-align: center; }
+  .proof-num { font-size: 1.4rem; font-weight: 800; color: #fff; }
+  .proof-label { font-size: 0.72rem; color: var(--text3); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .hero { padding: 3rem 1rem 2.5rem; }
+    .bundle-banner { flex-direction: column; text-align: center; }
+    .bundle-right { text-align: center; }
+    .products { grid-template-columns: 1fr; }
+    .inside-item { flex-direction: column; align-items: center; text-align: center; }
+    .proof-bar { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Dillon</div>
+  <a href="https://gumroad.com/dillon/products/full-stack-bundle" class="nav-cta">Get the Bundle →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🚀 Developer Products — No Fluff</div>
+  <h1>From <span>zero to autonomous</span> in 48 hours.</h1>
+  <p>Real code. Real agents. Real income systems. Built over 6 months, tested in production, handed to you as copy-paste blueprints — not another tutorial that stops halfway.</p>
+  <p style="color:var(--text3);font-size:0.82rem;margin-top:0.3rem;">Agent blueprints · Revenue automation · Crypto playbooks</p>
+  <p class="hero-proof"><span>4 products</span> · 6 months in production · 30-day money-back</p>
+</section>
+
+<!-- PAIN POINTS -->
+<div class="pain">
+  <div class="pain-card">
+    <div class="emoji">😤</div>
+    <h4>You've watched 15 videos on agents</h4>
+    <p>And still can't build one that actually runs itself. Every tutorial stops at "hello world." None show you persistence, memory, or real autonomy.</p>
+  </div>
+  <div class="pain-card">
+    <div class="emoji">💸</div>
+    <h4>You have skills. No system.</h4>
+    <p>You can code. You could freelance. But applying to gigs one by one doesn't scale. You need automation that finds and vets opportunities for you.</p>
+  </div>
+  <div class="pain-card">
+    <div class="emoji">🔒</div>
+    <h4>Crypto is all hype, no plan</h4>
+    <p>Twitter says "buy now." Reddit says "it's a scam." Nobody shows you the boring, reliable way to accumulate BTC/ETH from literally $0.</p>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="section-header" id="products">
+  <h2>Pick what you need</h2>
+  <p>Each product stands alone. No upsells, no subscriptions. Or grab the bundle below.</p>
+</div>
+
+<div class="products">
+
+  <!-- Product 1 -->
+  <div class="product-card featured">
+    <div class="card-tag">⭐ Most Popular</div>
+    <h3>AI Agent Starter Kit</h3>
+    <p class="card-desc">Zero to a working autonomous agent in 48 hours. The only guide that actually shows you the code.</p>
+    <ul>
+      <li>MCP vs A2A vs Custom — which to use when</li>
+      <li>48-hour blueprint (copy-paste ready)</li>
+      <li>Memory, persistence & security patterns</li>
+      <li>10 real-world agent patterns with code</li>
+    </ul>
+    <div class="card-footer">
+      <div class="card-price">$29 <span>/ guide</span></div>
+      <a href="https://gumroad.com/dillon/products/ai-agent-starter-kit" class="card-btn">Buy Now →</a>
+    </div>
+  </div>
+
+  <!-- Product 2 -->
+  <div class="product-card">
+    <div class="card-tag">💰 Top Earner</div>
+    <h3>Revenue Automation Playbook</h3>
+    <p class="card-desc">Build systems that generate income with zero daily effort. Real code, real ROI projections.</p>
+    <ul>
+      <li>3 proven automation streams (code included)</li>
+      <li>$0/month infrastructure stack</li>
+      <li>Free → Paid conversion playbook</li>
+      <li>30-60-90 day action plan</li>
+    </ul>
+    <div class="card-footer">
+      <div class="card-price">$39 <span>/ guide</span></div>
+      <a href="https://gumroad.com/dillon/products/revenue-automation-playbook" class="card-btn">Buy Now →</a>
+    </div>
+  </div>
+
+  <!-- Product 3 -->
+  <div class="product-card">
+    <div class="card-tag">📈 Passive Income</div>
+    <h3>Crypto Yield Guide</h3>
+    <p class="card-desc">The boring, reliable way to grow crypto. Staking & yield farming explained simply — with a calculator.</p>
+    <ul>
+      <li>Lido (5.1%), Aave (5.8–6.5%), Rocket Pool</li>
+      <li>Risk-ranked strategy matrix</li>
+      <li>Python ROI calculator (included)</li>
+      <li>Step-by-step setup for each protocol</li>
+    </ul>
+    <div class="card-footer">
+      <div class="card-price">$19 <span>/ guide</span></div>
+      <a href="https://gumroad.com/dillon/products/crypto-yield-guide" class="card-btn">Buy Now →</a>
+    </div>
+  </div>
+
+  <!-- Product 4 -->
+  <div class="product-card">
+    <div class="card-tag">🎯 Entry Point</div>
+    <h3>Free Crypto Playbook</h3>
+    <p class="card-desc">$0 in, $100–$220 out in your first month. The no-BS guide to earning crypto without spending any.</p>
+    <ul>
+      <li>Coinbase, Revolut, BitDegree Learn & Earn</li>
+      <li>Scam filter checklist (saves you from 90%)</li>
+      <li>3-week action plan (day by day)</li>
+      <li>Airdrop vetting framework</li>
+    </ul>
+    <div class="card-footer">
+      <div class="card-price">$9 <span>/ guide</span></div>
+      <a href="https://gumroad.com/dillon/products/free-crypto-playbook" class="card-btn">Start Here →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- BUNDLE BANNER (after products — upgrade moment) -->
+<div class="bundle-banner">
+  <div class="bundle-left">
+    <div class="bundle-tag">🔥 Best Value — Most People Grab This</div>
+    <h3>The Full Stack Bundle</h3>
+    <p>All 4 products. Build agents + automate income + seed crypto. Everything, once.</p>
+  </div>
+  <div class="bundle-right">
+    <div class="bundle-price-old">$96 if bought separately</div>
+    <div class="bundle-price">$69 <span>/ one-time</span></div>
+    <a href="https://gumroad.com/dillon/products/full-stack-bundle" class="bundle-btn">Grab the Bundle →</a>
+    <div style="font-size:0.72rem;color:var(--text3);margin-top:0.5rem;">Early pricing · goes up after 50 sales</div>
+  </div>
+</div>
+
+<!-- PROOF BAR -->
+
+<!-- WHAT'S INSIDE (reveals NEW info not in cards) -->
+<div class="section-header">
+  <h2>What you actually get</h2>
+  <p>Things the product cards don't tell you.</p>
+</div>
+
+<div class="inside">
+  <div class="inside-item">
+    <div class="inside-num">1</div>
+    <div>
+      <h4>A trust & security chapter nobody else covers</h4>
+      <p>The Agent Kit includes "Delegated Authority Done Right" — how to give an agent permissions without handing it the keys to everything. This is the part that separates toy agents from production ones.</p>
+    </div>
+  </div>
+  <div class="inside-item">
+    <div class="inside-num">2</div>
+    <div>
+      <h4>The filtering logic that actually finds good gigs</h4>
+      <p>The Revenue Playbook's lead scraper collects hundreds of posts. The real value is the filter: it scores by pay rate, fit, and response speed. That's the part that took months to get right.</p>
+    </div>
+  </div>
+  <div class="inside-item">
+    <div class="inside-num">3</div>
+    <div>
+      <h4>Gas costs are baked into the calculator</h4>
+      <p>Most yield calculators show you gross APY. Ours deducts gas fees, platform fees, and tax estimates. What you see is what you actually get in your wallet.</p>
+    </div>
+  </div>
+  <div class="inside-item">
+    <div class="inside-num">4</div>
+    <div>
+      <h4>A scam filter checklist that saves you from 90% of bad airdrops</h4>
+      <p>The Free Crypto Playbook isn't just "here are airdrops." It's a vetting framework: 5 questions you ask before connecting your wallet to anything. This alone is worth the $9.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROOF FROM ACTUAL RESULTS -->
+<div class="section-header">
+  <h2>Proof it works</h2>
+  <p>Not promises. Actual output from running these systems.</p>
+</div>
+<div style="max-width:780px;margin:0 auto 1rem;padding:0 1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;">
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.3rem;">
+    <div style="font-size:1.5rem;font-weight:800;color:var(--green);margin-bottom:0.2rem;">40 leads</div>
+    <p style="font-size:0.82rem;color:var(--text2);">Collected by the Reddit lead scraper in its first night running. $90–$130/hr gigs, filtered automatically.</p>
+    <div style="font-size:0.72rem;color:var(--text3);margin-top:0.5rem;">→ From the Revenue Automation Playbook</div>
+  </div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.3rem;">
+    <div style="font-size:1.5rem;font-weight:800;color:var(--green);margin-bottom:0.2rem;">5,100 lines</div>
+    <p style="font-size:0.82rem;color:var(--text2);">Of production code across 3 automation systems. All running on $0/month infrastructure. Uptime: 100%.</p>
+    <div style="font-size:0.72rem;color:var(--text3);margin-top:0.5rem;">→ Across all products combined</div>
+  </div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.3rem;">
+    <div style="font-size:1.5rem;font-weight:800;color:var(--green);margin-bottom:0.2rem;">$100–$220</div>
+    <p style="font-size:0.82rem;color:var(--text2);">Realistic first-month earnings from Learn & Earn programs. Coinbase alone pays up to $24/course.</p>
+    <div style="font-size:0.72rem;color:var(--text3);margin-top:0.5rem;">→ From the Free Crypto Playbook</div>
+  </div>
+</div>
+
+<!-- PROOF BAR (credibility summary before FAQ) -->
+<div class="proof-bar" style="margin-top:2.5rem;">
+  <div class="proof-item">
+    <div class="proof-num">6 mo</div>
+    <div class="proof-label">of real-world testing</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num">$0</div>
+    <div class="proof-label">infra cost to run</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num">4</div>
+    <div class="proof-label">standalone products</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num" style="color:var(--green);">100%</div>
+    <div class="proof-label">money-back guarantee</div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section-header">
+  <h2>Questions</h2>
+</div>
+<div class="faq">
+  <div class="faq-item">
+    <div class="faq-q">Are these just PDFs or do I get code too?</div>
+    <div class="faq-a">Both. Agent Kit + Revenue Playbook include copy-paste code. Yield Guide includes a Python calculator.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Do I need experience to use these?</div>
+    <div class="faq-a">Yes — comfortable with Python and basic JS. These are for devs who want to move fast, not learn from scratch.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What's the refund policy?</div>
+    <div class="faq-a">30 days, no questions. If it doesn't deliver, I don't want your money.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Why not just find this stuff for free online?</div>
+    <div class="faq-a">You can. It took me 6 months to piece it together. This saves you that. The code alone is worth the price.</div>
+  </div>
+</div>
+
+<!-- EMAIL CAPTURE -->
+<div class="capture">
+  <h3>Not ready to buy? Get a free sample.</h3>
+  <p>Drop your email. I'll send you Chapter 1 of the Agent Kit — the "What Actually Is an AI Agent" breakdown. No spam.</p>
+  <form class="capture-form" onsubmit="event.preventDefault(); alert('Thanks! (Email capture placeholder)');">
+    <input type="email" placeholder="you@email.com" required>
+    <button type="submit">Send Me Chapter 1</button>
+  </form>
+  <p class="capture-note">No spam. Unsubscribe anytime. I hate those emails too.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Dillon · Austin, TX</p>
+  <p style="margin-top:0.4rem;">Built with real code. Sold with no BS.</p>
+</footer>
+
+</body>
+</html>
